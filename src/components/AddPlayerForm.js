@@ -42,7 +42,6 @@ const AddPlayerForm = props => {
             placeholder="John"
             value={player.firstName}
             onChange={handleInputChange}
-            pattern="[A-Za-z]"
             required
             autoFocus
           />
@@ -55,7 +54,6 @@ const AddPlayerForm = props => {
             placeholder="Smith"
             value={player.lastName}
             onChange={handleInputChange}
-            pattern="[A-Za-z]"
             required
           />
         </label>

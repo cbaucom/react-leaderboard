@@ -22,6 +22,7 @@ const App = () => {
     { id: 5, firstName: "Dustin", lastName: "Johnson", score: 87 },
     { id: 6, firstName: "Jordan", lastName: "Spieth", score: 86 },
     { id: 7, firstName: "Rory", lastName: "McIlroy", score: 86 },
+    { id: 8, firstName: "Chris", lastName: "Baucom", score: 100 },
   ];
 
   const initialPlayers = () =>

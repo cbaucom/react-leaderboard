@@ -9,13 +9,33 @@ const EditPlayerForm = props => {
     setPlayer(props.currentPlayer);
   }, [props]);
 
-  const handleInputChange = event => {
+  const handleNameChange = event => {
     const { name, value } = event.target;
+    const firstName = event.target.value;
+    const lastName = event.target.value;
 
-    setPlayer({
-      ...player,
-      [name]: value,
-    });
+    if (
+      !firstName ||
+      firstName.match(/^[a-zA-Z]*$/) ||
+      (!lastName || lastName.match(/^[a-zA-Z]*$/))
+    ) {
+      setPlayer({
+        ...player,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleScoreChange = event => {
+    const { name, value } = event.target;
+    const score = event.target.value;
+
+    if (!score || score.match(/^(100|[0-9]{1,2})?$/)) {
+      setPlayer({
+        ...player,
+        [name]: value,
+      });
+    }
   };
 
   const handleOnSubmit = event => {
@@ -43,7 +63,7 @@ const EditPlayerForm = props => {
             type="text"
             name="firstName"
             value={player.firstName}
-            onChange={handleInputChange}
+            onChange={handleNameChange}
             onKeyPress={handleStringOnly}
             required
             autoFocus
@@ -55,7 +75,7 @@ const EditPlayerForm = props => {
             type="text"
             name="lastName"
             value={player.lastName}
-            onChange={handleInputChange}
+            onChange={handleNameChange}
             onKeyPress={handleStringOnly}
             required
           />
@@ -68,7 +88,7 @@ const EditPlayerForm = props => {
             min="0"
             max="100"
             value={player.score}
-            onChange={handleInputChange}
+            onChange={handleScoreChange}
             required
           />
         </label>

@@ -12,13 +12,33 @@ const AddPlayerForm = props => {
 
   const [player, setPlayer] = useState(initialFormState);
 
-  const handleInputChange = event => {
+  const handleNameChange = event => {
     const { name, value } = event.target;
+    const firstName = event.target.value;
+    const lastName = event.target.value;
 
-    setPlayer({
-      ...player,
-      [name]: value,
-    });
+    if (
+      !firstName ||
+      firstName.match(/^[a-zA-Z]*$/) ||
+      (!lastName || lastName.match(/^[a-zA-Z]*$/))
+    ) {
+      setPlayer({
+        ...player,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleScoreChange = event => {
+    const { name, value } = event.target;
+    const score = event.target.value;
+
+    if (!score || score.match(/^(100|[0-9]{1,2})?$/)) {
+      setPlayer({
+        ...player,
+        [name]: value,
+      });
+    }
   };
 
   const handleOnSubmit = event => {
@@ -41,7 +61,7 @@ const AddPlayerForm = props => {
             name="firstName"
             placeholder="John"
             value={player.firstName}
-            onChange={handleInputChange}
+            onChange={handleNameChange}
             required
             autoFocus
           />
@@ -53,7 +73,7 @@ const AddPlayerForm = props => {
             name="lastName"
             placeholder="Smith"
             value={player.lastName}
-            onChange={handleInputChange}
+            onChange={handleNameChange}
             required
           />
         </label>
@@ -66,7 +86,7 @@ const AddPlayerForm = props => {
             min="0"
             max="100"
             value={player.score}
-            onChange={handleInputChange}
+            onChange={handleScoreChange}
             required
           />
         </label>
